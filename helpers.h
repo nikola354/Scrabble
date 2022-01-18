@@ -17,6 +17,9 @@
 #define SCRABBLE_HELPERS_H
 #endif
 
+#include <stdlib.h>
+#include<time.h>
+
 using namespace std;
 
 const int ENGLISH_LETTERS = 26;
@@ -39,6 +42,7 @@ char *generateLetters(int lettersCount) {
     char *result = new char[lettersCount];
 
     for (int i = 0; i < lettersCount; ++i) {
+        srand(i + time(0)); //every time we get 10 different letters
         result[i] = randomLetter();
     }
     return result;
@@ -49,6 +53,7 @@ void printLetters(const char *letters, int size) {
         cout << letters[i] << ' ';
     }
     cout << endl;
+    cout << "Try with word or type 0 for new letters:" << endl;
 }
 
 int *getLettersArray(const char *letters, int lettersCount) {
