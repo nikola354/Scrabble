@@ -22,9 +22,19 @@
 using namespace std;
 
 int rounds = 5;
-int givenLetters = 10;
+int lettersCount = 10;
+
+void loadMenu();
+
+void game();
 
 int main() {
+    loadMenu();
+
+    return 0;
+}
+
+void loadMenu() {
     ostringstream welcomeMsgs;
 
     welcomeMsgs << "Welcome to my scrabble game!" << endl << endl;
@@ -35,7 +45,7 @@ int main() {
     welcomeMsgs << "4. Exit" << endl;
 
     cout << welcomeMsgs.str();
-    
+
     ostringstream wrongInputMsgs;
     wrongInputMsgs << "Wrong input! Try again..." << endl;
 
@@ -44,9 +54,9 @@ int main() {
     while (!ok) {
         ok = true;
 
-        cin >> input;
-
-        if (!isNumber(input) || toNumber(input) > 4 || toNumber(input) < 1){
+//        cin >> input;
+        input = '1';
+        if (!isNumber(input) || toNumber(input) > 4 || toNumber(input) < 1) {
             ok = false;
             cout << wrongInputMsgs.str();
             continue;
@@ -56,6 +66,7 @@ int main() {
 
         switch (command) {
             case 1:
+                game();
                 break;
             case 2:
                 break;
@@ -63,10 +74,25 @@ int main() {
                 break;
             case 4:
                 cout << "bye bye :)";
-                return 0;
+                return;
         }
     }
+}
 
+void game() {
+    for (int i = 0; i < rounds; ++i) {
+        cout << "Round # " << i + 1 << ". Available letters: ";
 
-    return 0;
+        char *letters = generateLetters(lettersCount);
+        printLetters(letters, lettersCount);
+
+        string word;
+        cin >> word;
+
+        if (!isPossibleWord(word, letters, lettersCount)){
+            cout << "Invalid word.";
+        }
+
+        break;
+    }
 }
