@@ -33,9 +33,13 @@ bool isRealWord(string word) {
 
     string vocabulary;
     while (getline(dictionary, vocabulary)) {
-        if (word == vocabulary) return true;
+        if (word == vocabulary) {
+            dictionary.close();
+            return true;
+        }
     }
 
+    dictionary.close();
     return false;
 
 }
