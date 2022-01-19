@@ -37,6 +37,3 @@ cmake-build-debug
 .idea
 CMakeLists.txt
 workspace.xml
-
-#dictionary because of debugging
-words.txt
