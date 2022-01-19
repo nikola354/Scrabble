@@ -53,7 +53,7 @@ void printLetters(const char *letters, int size) {
         cout << letters[i] << ' ';
     }
     cout << endl;
-    cout << "Try with word or type 0 for new letters:" << endl;
+    cout << "Try with word or type 1 for new letters or 0 to end the game:" << endl;
 }
 
 int *getLettersArray(const char *letters, int lettersCount) {

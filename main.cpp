@@ -43,6 +43,8 @@ void settingsMenu();
 void changeRoundsMenu();
 
 int main() {
+    cout << "Welcome to my scrabble game!" << endl << endl;
+
     mainMenu();
 
     return 0;
@@ -51,7 +53,6 @@ int main() {
 void mainMenu() {
     ostringstream welcomeMsgs;
 
-    welcomeMsgs << "Welcome to my scrabble game!" << endl << endl;
     welcomeMsgs << "Choose one of the following options by typing 1, 2, 3 or 4..." << endl;
     welcomeMsgs << "1. Start new game" << endl;
     welcomeMsgs << "2. Settings" << endl;
@@ -108,7 +109,7 @@ void game() {
         while (remainingTries > 0) {
             cin >> word;
 
-            if (word == "0") { //Shuffle
+            if (word == "1") { //Shuffle
                 if (remainingShuffles == 0) {
                     cout << "No remaining shuffles! Continue with the same letters:" << endl;
                 } else {
@@ -121,6 +122,11 @@ void game() {
                 printLetters(letters, lettersCount);
 
                 continue;
+            }
+
+            if (word == "0") { //end game
+                cout << "Game over! Returning to menu..." << endl;
+                return mainMenu();
             }
 
             //check if the word can be made from this letters
