@@ -24,8 +24,15 @@ using namespace std;
 
 const int ENGLISH_LETTERS = 26;
 
-bool isNumber(char a) {
+bool isDigit(char a) {
     return a - '0' <= 9 && a - '0' >= 0;
+}
+
+bool isNumber(const string &str) {
+    for (char const &c: str) {
+        if (!isDigit(c)) return false;
+    }
+    return true;
 }
 
 int toNumber(char a) {
@@ -80,6 +87,6 @@ bool isPossibleWord(const string word, const char *letters, int lettersCount) {
     return true;
 }
 
-bool isValidCommand (string input) {
-    return (input.size() == 1 && isNumber(input[0]));
+bool isValidCommand(string input, int allowedSize) {
+    return (input.size() <= allowedSize && isNumber(input));
 }
