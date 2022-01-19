@@ -25,6 +25,8 @@ int maxShuffles = 2;
 
 const int MAX_TRIES = 3;
 const char WRONG_INPUT_MSG[] = "Wrong input! Try again...";
+const int MIN_ROUNDS = 3;
+const int MAX_ROUNDS = 9;
 
 //include headers after constants in order to use them
 #include "helpers.h"
@@ -32,21 +34,21 @@ const char WRONG_INPUT_MSG[] = "Wrong input! Try again...";
 #include "settingsController.h"
 
 
-void loadMainMenu();
+void mainMenu();
 
 void game();
 
-void loadSettings();
+void settingsMenu();
 
-void loadChangeRounds();
+void changeRoundsMenu();
 
 int main() {
-    loadMenu();
+    mainMenu();
 
     return 0;
 }
 
-void loadMainMenu() {
+void mainMenu() {
     ostringstream welcomeMsgs;
 
     welcomeMsgs << "Welcome to my scrabble game!" << endl << endl;
@@ -77,7 +79,7 @@ void loadMainMenu() {
                 game();
                 break;
             case 2:
-                loadSettings();
+                settingsMenu();
                 break;
             case 3:
                 break;
@@ -156,15 +158,16 @@ void game() {
 
     if (command == 0) return;
 
-    loadMainMenu();
+    mainMenu();
 }
 
-void loadSettings() {
+void settingsMenu() {
     ostringstream settingsMenu;
-    settingsMenu << "Choose what do you want to change (1, 2, 3): " << endl;
+    settingsMenu << "Choose what do you want to change (1, 2, 3) or go back (4): " << endl;
     settingsMenu << "1. Number of rounds" << endl;
     settingsMenu << "2. Number of the given letters" << endl;
     settingsMenu << "3. Number of allowed shuffles for the whole game" << endl;
+    settingsMenu << "4. Back to main menu" << endl;
 
     cout << settingsMenu.str();
 
@@ -175,7 +178,7 @@ void loadSettings() {
         ok = true;
 
         cin >> input;
-        if (!isValidCommand(input)) {
+        if (!isValidCommand(input)) { //ine number between 0-9
             ok = false;
             cout << WRONG_INPUT_MSG << endl;
             continue; //if the input is not real command, we go again to line 56 with ok = false
@@ -185,10 +188,14 @@ void loadSettings() {
 
         switch (command) {
             case 1:
+                changeRoundsMenu();
                 break;
             case 2:
                 break;
             case 3:
+                break;
+            case 4:
+                mainMenu();
                 break;
             default:
                 ok = false;
@@ -197,6 +204,31 @@ void loadSettings() {
     }
 }
 
-void loadChangeRounds() {
-    
+void changeRoundsMenu() {
+    ostringstream menu;
+    menu << "Choose the number of rounds (3-9) or type 0 to go back." << endl;
+
+    cout << menu.str();
+
+    string input;
+    cin >> input;
+
+    if (!isValidCommand(input)) {
+        cout << WRONG_INPUT_MSG << endl;
+        return changeRoundsMenu();
+    }
+
+    int command = toNumber(input[0]);
+
+    if (command == 0) {
+        settingsMenu();
+    } else if (command >= 3 && command <= 9) {
+        rounds = command; //change the rounds
+        cout << "Rounds set to " << rounds << " successfully!" << endl;
+        cout << "Returning to settings..." << endl;
+        settingsMenu();
+    } else {
+        cout << WRONG_INPUT_MSG << endl;
+        return changeRoundsMenu();
+    }
 }
