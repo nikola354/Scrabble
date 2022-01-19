@@ -22,7 +22,7 @@
 
 using namespace std;
 
-const int ENGLISH_LETTERS = 26;
+const int ALPHABET_COUNT = 26;
 //for each letter in the alphabet (0-25) we have different point, depending on how difficult is to form a word using that letter:
 const int lettersPoints[] = {
         1, 3, 3, 2, 1, 4, 2, 4, 1,
@@ -41,41 +41,37 @@ bool isNumber(const string &str) {
     return true;
 }
 
-char randomLetter() {
-    int random = rand() % ENGLISH_LETTERS;
+int randomLetter() {
+    int random = rand() % ALPHABET_COUNT;
 
-    return (char) (random + (int) 'a');
+    return random;
 }
 
-char *generateLetters(int lettersCount) {
-    char *result = new char[lettersCount];
+int *generateLetters(int lettersCount) {
+    int *result = new int[ALPHABET_COUNT];
+
+    //set every letter to 0 occurrences
+    for (int i = 0; i < ALPHABET_COUNT; ++i) {
+        result[i] = 0;
+    }
 
     for (int i = 0; i < lettersCount; ++i) {
+        //todo: make it more random
         srand(i + time(0)); //every time we get 10 different letters
-        result[i] = randomLetter();
+        result[randomLetter()]++; //increase the occurrences of the letter by 1
     }
+
     return result;
 }
 
-void printLetters(const char *letters, int size) {
-    for (int i = 0; i < size; ++i) {
-        cout << letters[i] << ' ';
+void printLetters(const int *letters) {
+    for (int i = 0; i < ALPHABET_COUNT; ++i) {
+        for (int j = 0; j < letters[i]; ++j) {
+            cout << (char) (i + 'a') << ' ';
+        }
     }
     cout << endl;
     cout << "Try with word or type 1 for new letters or 0 to end the game:" << endl;
-}
-
-int *getLettersArray(const char *letters, int lettersCount) {
-    int *arr = new int[ENGLISH_LETTERS];
-
-    for (int i = 0; i < ENGLISH_LETTERS; ++i) {
-        arr[i] = 0;
-    }
-
-    for (int i = 0; i < lettersCount; ++i) {
-        arr[letters[i] - 'a']++;
-    }
-    return arr;
 }
 
 bool isLowerLetter(const char a) {
@@ -90,10 +86,13 @@ bool isWord(const string &word) {
     return true;
 }
 
-bool isPossibleWord(const string &word, const char *letters, int lettersCount) {
+bool isPossibleWord(const string &word, const int *letters) {
     if (!isWord(word)) return false; //if it is not a word at all (contains numbers or special chars)
 
-    int *lettersArr = getLettersArray(letters, lettersCount);
+    int *lettersArr = new int[ALPHABET_COUNT];
+    for (int i = 0; i < ALPHABET_COUNT; ++i) {
+        lettersArr[i] = letters[i];
+    }
 
     for (const char &letter: word) { //for every letter in the word
         if (lettersArr[letter - 'a'] == 0) //if on the position of the current letter we do not have given letters
@@ -103,13 +102,13 @@ bool isPossibleWord(const string &word, const char *letters, int lettersCount) {
     return true;
 }
 
-int getPoints (char a) {
+int getPoints(char a) {
     return lettersPoints[a - 'a'];
 }
 
-int calculatePoints (const string &word){
+int calculatePoints(const string &word) {
     int sum = 0;
-    for(const char &c : word){
+    for (const char &c: word) {
         cout << c << " -> " << getPoints(c) << endl;
         sum += getPoints(c);
     }

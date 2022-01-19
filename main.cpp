@@ -95,8 +95,8 @@ void game() {
     for (int i = 0; i < rounds; ++i) {
         cout << "Round # " << i + 1 << ". Available letters: ";
 
-        char *letters = generateLetters(lettersCount);
-        printLetters(letters, lettersCount); // print the letters which the user can use to make a word
+        int *letters = generateLetters(lettersCount);
+        printLetters(letters); // print the letters which the user can use to make a word
 
         int remainingTries = MAX_TRIES;
         string word;
@@ -113,7 +113,7 @@ void game() {
                     cout << "New letters: ";
                 }
 
-                printLetters(letters, lettersCount);
+                printLetters(letters);
                 continue;
             }
 
@@ -123,10 +123,10 @@ void game() {
             }
 
             //check if the word can be made from this letters
-            bool isPossible = isPossibleWord(word, letters, lettersCount);
+            bool isPossible = isPossibleWord(word, letters);
             if (!isPossible || !isInDictionary(word)) { //if it is not possible, or it is not in the dictionary
                 remainingTries--;
-
+                //todo check if it is a word
                 if (!isPossible) {
                     cout << "Invalid combination. You cannot make this word from the given letters." << endl;
                     cout << "Remaining tries: " << remainingTries << endl;
@@ -136,7 +136,7 @@ void game() {
 
                 if (remainingTries == 0) break;
                 cout << "Try again with: ";
-                printLetters(letters, lettersCount);
+                printLetters(letters);
             } else {
                 points += calculatePoints(word);
 
