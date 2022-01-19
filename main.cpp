@@ -25,13 +25,6 @@ int maxShuffles = 2;
 
 const int MAX_TRIES = 3;
 const char WRONG_INPUT_MSG[] = "Wrong input! Try again...";
-const int MIN_ROUNDS = 3;
-const int MAX_ROUNDS = 10;
-const int MIN_LETTERS_COUNT = 5;
-const int MAX_LETTERS_COUNT = 15;
-
-
-
 
 void mainMenu();
 
@@ -67,13 +60,13 @@ void mainMenu() {
         ok = true;
 
         cin >> input;
-        if (!isValidCommand(input, 1)) {
+        if (!isNumber(input)) {
             ok = false;
             cout << WRONG_INPUT_MSG << endl;
             continue; //if the input is not real command, we go again to line 56 with ok = false
         }
 
-        int command = toNumber(input[0]);
+        int command = stoi(input);
 
         switch (command) {
             case 1:

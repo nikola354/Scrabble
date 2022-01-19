@@ -35,10 +35,6 @@ bool isNumber(const string &str) {
     return true;
 }
 
-int toNumber(char a) {
-    return a - '0';
-}
-
 char randomLetter() {
     int random = rand() % ENGLISH_LETTERS;
 
@@ -85,8 +81,4 @@ bool isPossibleWord(const string word, const char *letters, int lettersCount) {
         lettersArr[letter - 'a']--;
     }
     return true;
-}
-
-bool isValidCommand(string input, int allowedSize) {
-    return (input.size() <= allowedSize && isNumber(input));
 }
