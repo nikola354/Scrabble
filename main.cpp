@@ -16,19 +16,29 @@
 #include <iostream>
 #include <sstream>
 
-#include "helpers.h"
-#include "dictionaryController.h"
 
 using namespace std;
 
 int rounds = 5;
 int lettersCount = 10;
 int maxShuffles = 2;
-const int MAX_TRIES = 3;
 
-void loadMenu();
+const int MAX_TRIES = 3;
+const char WRONG_INPUT_MSG[] = "Wrong input! Try again...";
+
+//include headers after constants in order to use them
+#include "helpers.h"
+#include "dictionaryController.h"
+#include "settingsController.h"
+
+
+void loadMainMenu();
 
 void game();
+
+void loadSettings();
+
+void loadChangeRounds();
 
 int main() {
     loadMenu();
@@ -36,7 +46,7 @@ int main() {
     return 0;
 }
 
-void loadMenu() {
+void loadMainMenu() {
     ostringstream welcomeMsgs;
 
     welcomeMsgs << "Welcome to my scrabble game!" << endl << endl;
@@ -48,34 +58,35 @@ void loadMenu() {
 
     cout << welcomeMsgs.str();
 
-    ostringstream wrongInputMsgs;
-    wrongInputMsgs << "Wrong input! Try again..." << endl;
-
-    char input;
+    string input;
     bool ok = false;
     while (!ok) {
         ok = true;
 
         cin >> input;
-        if (!isNumber(input) || toNumber(input) > 4 || toNumber(input) < 1) {
+        if (!isValidCommand(input)) {
             ok = false;
-            cout << wrongInputMsgs.str();
+            cout << WRONG_INPUT_MSG << endl;
             continue; //if the input is not real command, we go again to line 56 with ok = false
         }
 
-        int command = toNumber(input);
+        int command = toNumber(input[0]);
 
         switch (command) {
             case 1:
                 game();
                 break;
             case 2:
+                loadSettings();
                 break;
             case 3:
                 break;
             case 4:
                 cout << "bye bye :)";
                 return;
+            default:
+                ok = false;
+                cout << WRONG_INPUT_MSG << endl;
         }
     }
 }
@@ -110,7 +121,8 @@ void game() {
                 continue;
             }
 
-            bool isPossible = isPossibleWord(word, letters, lettersCount); //check if the word can be made from this letters
+            //check if the word can be made from this letters
+            bool isPossible = isPossibleWord(word, letters, lettersCount);
             if (!isPossible || !isRealWord(word)) { //if it is not possible, or it is not in the dictionary
                 remainingTries--;
 
@@ -144,5 +156,47 @@ void game() {
 
     if (command == 0) return;
 
-    loadMenu();
+    loadMainMenu();
+}
+
+void loadSettings() {
+    ostringstream settingsMenu;
+    settingsMenu << "Choose what do you want to change (1, 2, 3): " << endl;
+    settingsMenu << "1. Number of rounds" << endl;
+    settingsMenu << "2. Number of the given letters" << endl;
+    settingsMenu << "3. Number of allowed shuffles for the whole game" << endl;
+
+    cout << settingsMenu.str();
+
+    string input;
+
+    bool ok = false;
+    while (!ok) {
+        ok = true;
+
+        cin >> input;
+        if (!isValidCommand(input)) {
+            ok = false;
+            cout << WRONG_INPUT_MSG << endl;
+            continue; //if the input is not real command, we go again to line 56 with ok = false
+        }
+
+        int command = toNumber(input[0]);
+
+        switch (command) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            default:
+                ok = false;
+                cout << WRONG_INPUT_MSG << endl;
+        }
+    }
+}
+
+void loadChangeRounds() {
+    
 }

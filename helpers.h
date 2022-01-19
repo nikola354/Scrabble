@@ -72,10 +72,14 @@ int *getLettersArray(const char *letters, int lettersCount) {
 bool isPossibleWord(const string word, const char *letters, int lettersCount) {
     int *lettersArr = getLettersArray(letters, lettersCount);
 
-    for(const char& letter : word) { //for every letter in the word
+    for (const char &letter: word) { //for every letter in the word
         if (lettersArr[letter - 'a'] == 0) //if on the position of the current letter we do not have given letters
             return false;
         lettersArr[letter - 'a']--;
     }
     return true;
+}
+
+bool isValidCommand (string input) {
+    return (input.size() == 1 && isNumber(input[0]));
 }
