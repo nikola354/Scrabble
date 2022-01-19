@@ -23,6 +23,12 @@
 using namespace std;
 
 const int ENGLISH_LETTERS = 26;
+//for each letter in the alphabet (0-25) we have different point, depending on how difficult is to form a word using that letter:
+const int lettersPoints[] = {
+        1, 3, 3, 2, 1, 4, 2, 4, 1,
+        8, 5, 1, 3, 1, 1, 3, 10,
+        1, 1, 1, 1, 4, 4, 8, 4, 10
+};
 
 bool isDigit(char a) {
     return a - '0' <= 9 && a - '0' >= 0;
@@ -95,4 +101,17 @@ bool isPossibleWord(const string &word, const char *letters, int lettersCount) {
         lettersArr[letter - 'a']--;
     }
     return true;
+}
+
+int getPoints (char a) {
+    return lettersPoints[a - 'a'];
+}
+
+int calculatePoints (const string &word){
+    int sum = 0;
+    for(const char &c : word){
+        cout << c << " -> " << getPoints(c) << endl;
+        sum += getPoints(c);
+    }
+    return sum;
 }

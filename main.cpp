@@ -138,7 +138,7 @@ void game() {
                 cout << "Try again with: ";
                 printLetters(letters, lettersCount);
             } else {
-                points += word.size();
+                points += calculatePoints(word);
 
                 if (i != rounds - 1) // if it is not the last round
                     cout << "Your points so far are: " << points << endl;
