@@ -60,7 +60,7 @@ void loadMenu() {
         if (!isNumber(input) || toNumber(input) > 4 || toNumber(input) < 1) {
             ok = false;
             cout << wrongInputMsgs.str();
-            continue;
+            continue; //if the input is not real command, we go again to line 56 with ok = false
         }
 
         int command = toNumber(input);
@@ -92,7 +92,6 @@ void game() {
 
         int remainingTries = MAX_TRIES;
         string word;
-
         while (remainingTries > 0) {
             cin >> word;
 
@@ -111,8 +110,8 @@ void game() {
                 continue;
             }
 
-            bool isPossible = isPossibleWord(word, letters, lettersCount);
-            if (!isPossible || !isRealWord(word)) {
+            bool isPossible = isPossibleWord(word, letters, lettersCount); //check if the word can be made from this letters
+            if (!isPossible || !isRealWord(word)) { //if it is not possible, or it is not in the dictionary
                 remainingTries--;
 
                 if (!isPossible) {
@@ -128,7 +127,7 @@ void game() {
             } else {
                 points += word.size();
 
-                if (i != rounds - 1)
+                if (i != rounds - 1) // if it is not the last round
                     cout << "Your points so far are: " << points << endl;
 
                 break;
