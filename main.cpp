@@ -76,6 +76,7 @@ void mainMenu() {
                 settingsMenu();
                 break;
             case 3:
+                addNewWord();
                 break;
             case 4:
                 cout << "bye bye :)";
@@ -113,7 +114,6 @@ void game() {
                 }
 
                 printLetters(letters, lettersCount);
-
                 continue;
             }
 
@@ -124,7 +124,7 @@ void game() {
 
             //check if the word can be made from this letters
             bool isPossible = isPossibleWord(word, letters, lettersCount);
-            if (!isPossible || !isRealWord(word)) { //if it is not possible, or it is not in the dictionary
+            if (!isPossible || !isInDictionary(word)) { //if it is not possible, or it is not in the dictionary
                 remainingTries--;
 
                 if (!isPossible) {

@@ -72,7 +72,21 @@ int *getLettersArray(const char *letters, int lettersCount) {
     return arr;
 }
 
-bool isPossibleWord(const string word, const char *letters, int lettersCount) {
+bool isLowerLetter(const char a) {
+    return a >= 'a' && a <= 'z';
+}
+
+bool isWord(const string &word) {
+    for (char const &c: word) {
+        if (!isLowerLetter(c)) return false;
+    }
+
+    return true;
+}
+
+bool isPossibleWord(const string &word, const char *letters, int lettersCount) {
+    if (!isWord(word)) return false; //if it is not a word at all (contains numbers or special chars)
+
     int *lettersArr = getLettersArray(letters, lettersCount);
 
     for (const char &letter: word) { //for every letter in the word
