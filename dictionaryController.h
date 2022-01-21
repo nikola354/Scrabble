@@ -65,7 +65,7 @@ bool addToDictionary(string word) {
 
 void addNewWord() {
     cout << "Type a word which has between " << WORD_MIN_LENGTH << " and " << WORD_MAX_LENGTH
-         << " lower letters or type 0 to go back." << endl;
+         << " lower letters or type 0 to go back:" << endl;
 
     string input;
     cin >> input;

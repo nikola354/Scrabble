@@ -77,7 +77,7 @@ void settingsMenu() {
 
 void changeRounds() {
     ostringstream menu;
-    menu << "Choose the number of rounds (" << MIN_ROUNDS << "-" << MAX_ROUNDS << ") or type 0 to go back." << endl;
+    menu << "Choose the number of rounds (" << MIN_ROUNDS << "-" << MAX_ROUNDS << ") or type 0 to go back:" << endl;
 
     cout << menu.str();
 
@@ -107,7 +107,7 @@ void changeRounds() {
 void changeLettersCount() {
     ostringstream menu;
     menu << "Choose the number of given letters (" << MIN_LETTERS_COUNT << "-" << MAX_LETTERS_COUNT
-         << ") or type 0 to go back." << endl;
+         << ") or type 0 to go back:" << endl;
 
     cout << menu.str();
 
@@ -137,7 +137,7 @@ void changeLettersCount() {
 void changeShuffles() {
     ostringstream menu;
     menu << "Choose the maximum allowed shuffles for one game (" << MIN_SHUFFLES << "-" << MAX_SHUFFLES
-         << ") or type 0 to go back." << endl;
+         << ") or type 0 to go back:" << endl;
 
     cout << menu.str();
 

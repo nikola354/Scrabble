@@ -46,7 +46,7 @@ int main() {
 void mainMenu() {
     ostringstream welcomeMsgs;
 
-    welcomeMsgs << "Choose one of the following options by typing 1, 2, 3 or 4..." << endl;
+    welcomeMsgs << "Choose one of the following options by typing 1, 2, 3 or 4:" << endl;
     welcomeMsgs << "1. Start new game" << endl;
     welcomeMsgs << "2. Settings" << endl;
     welcomeMsgs << "3. Add new word" << endl;
