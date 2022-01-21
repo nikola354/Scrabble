@@ -47,6 +47,8 @@ int randomLetter() {
     return random;
 }
 
+// returns arr[26], where the index in the array correspondents to the index of the letter in the alphabet.
+// the value of each element of the array is the number of occurrences the letter has
 int *generateLetters(int lettersCount) {
     int *result = new int[ALPHABET_COUNT];
 
@@ -56,7 +58,7 @@ int *generateLetters(int lettersCount) {
     }
 
     for (int i = 0; i < lettersCount; ++i) {
-        srand(i + i * time(0)); //every time we get 10 different letters
+        srand(i + i * time(0)); //the seed for every letter is unique
         result[randomLetter()]++; //increase the occurrences of the letter by 1
     }
 
@@ -86,6 +88,7 @@ bool isWord(const string &word) {
 }
 
 bool isPossibleWord(const string &word, const int *letters) {
+    // copy the letters array: 
     int *lettersArr = new int[ALPHABET_COUNT];
     for (int i = 0; i < ALPHABET_COUNT; ++i) {
         lettersArr[i] = letters[i];
