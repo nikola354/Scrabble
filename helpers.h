@@ -56,8 +56,7 @@ int *generateLetters(int lettersCount) {
     }
 
     for (int i = 0; i < lettersCount; ++i) {
-        //todo: make it more random
-        srand(i + time(0)); //every time we get 10 different letters
+        srand(i + time(0) * time(0)); //every time we get 10 different letters
         result[randomLetter()]++; //increase the occurrences of the letter by 1
     }
 
@@ -87,8 +86,6 @@ bool isWord(const string &word) {
 }
 
 bool isPossibleWord(const string &word, const int *letters) {
-    if (!isWord(word)) return false; //if it is not a word at all (contains numbers or special chars)
-
     int *lettersArr = new int[ALPHABET_COUNT];
     for (int i = 0; i < ALPHABET_COUNT; ++i) {
         lettersArr[i] = letters[i];

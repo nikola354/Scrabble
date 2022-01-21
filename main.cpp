@@ -122,11 +122,17 @@ void game() {
                 return mainMenu();
             }
 
+            if (!isWord(word)) {
+                cout << "You can use only lower latin letters or 0 to end the game and 1 to shuffle!" << endl;
+                cout << "Try again with: ";
+                printLetters(letters);
+                continue;
+            }
+
             //check if the word can be made from this letters
             bool isPossible = isPossibleWord(word, letters);
             if (!isPossible || !isInDictionary(word)) { //if it is not possible, or it is not in the dictionary
                 remainingTries--;
-                //todo check if it is a word
                 if (!isPossible) {
                     cout << "Invalid combination. You cannot make this word from the given letters." << endl;
                     cout << "Remaining tries: " << remainingTries << endl;
