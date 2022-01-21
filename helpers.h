@@ -15,7 +15,6 @@
 
 #ifndef SCRABBLE_HELPERS_H
 #define SCRABBLE_HELPERS_H
-#endif
 
 #include <stdlib.h>
 #include<time.h>
@@ -114,3 +113,5 @@ int calculatePoints(const string &word) {
     }
     return sum;
 }
+
+#endif

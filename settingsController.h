@@ -15,7 +15,6 @@
 
 #ifndef SCRABBLE_SETTINGSCONTROLLER_H
 #define SCRABBLE_SETTINGSCONTROLLER_H
-#endif
 
 const int MIN_ROUNDS = 3;
 const int MAX_ROUNDS = 10;
@@ -163,3 +162,4 @@ void changeShuffles() {
         return changeShuffles();
     }
 }
+#endif

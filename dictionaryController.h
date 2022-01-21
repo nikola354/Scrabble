@@ -16,8 +16,6 @@
 #ifndef SCRABBLE_DICTIONARYCONTROLLER_H
 #define SCRABBLE_DICTIONARYCONTROLLER_H
 
-#endif //SCRABBLE_DICTIONARYCONTROLLER_H
-
 #include <fstream>
 
 const char path[] = "../words.txt";
@@ -99,3 +97,5 @@ void addNewWord() {
     cout << "Returning to main menu..." << endl;
     mainMenu();
 }
+
+#endif //SCRABBLE_DICTIONARYCONTROLLER_H
