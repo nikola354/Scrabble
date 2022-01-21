@@ -88,7 +88,7 @@ bool isWord(const string &word) {
 }
 
 bool isPossibleWord(const string &word, const int *letters) {
-    // copy the letters array: 
+    // copy the letters array:
     int *lettersArr = new int[ALPHABET_COUNT];
     for (int i = 0; i < ALPHABET_COUNT; ++i) {
         lettersArr[i] = letters[i];
