@@ -56,7 +56,7 @@ int *generateLetters(int lettersCount) {
     }
 
     for (int i = 0; i < lettersCount; ++i) {
-        srand(i + time(0) * time(0)); //every time we get 10 different letters
+        srand(i + i * time(0)); //every time we get 10 different letters
         result[randomLetter()]++; //increase the occurrences of the letter by 1
     }
 
