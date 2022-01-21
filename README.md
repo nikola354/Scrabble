@@ -27,9 +27,18 @@ and change the path variable. Most likely, you should remove '../' from the path
                 All of the settings apply only while the program is running. They are not saved anywhere.
             </li>
             <li>
-                A new word is added to the dictionary at its end only if it is a new word.
+                A new word is added to the dictionary at its end and only if it is found earlier in the document.
+            </li>
+            <li>
+                Every letter brings different points. You can check scrabble_points.jpg . <br>
+                The points are stored in array of integers where the index in the array correspondents to the index of the letter in the alphabet.
             </li>
         </ul>
+    </li>
+    <li>
+        <h3>Hint for testing:</h3>
+        Every single letter is a word in the dictionary by itself.
+        If you enter the letter, you have a correct word, and you go to the next round.
     </li>
 </ul>
 
