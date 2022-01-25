@@ -24,7 +24,7 @@ const int WORD_MIN_LENGTH = 2;
 const int WORD_MAX_LENGTH = 30;
 
 
-bool isInDictionary(string word) {
+bool isInDictionary(const string &word) {
     fstream dictionary;
 
     dictionary.open(path, fstream::in);
@@ -45,7 +45,7 @@ bool isInDictionary(string word) {
     return false;
 }
 
-bool addToDictionary(string word) {
+bool addToDictionary(const string &word) {
     fstream dictionary;
 
     dictionary.open(path, fstream::out | fstream::app);
