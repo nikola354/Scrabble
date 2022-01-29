@@ -123,7 +123,7 @@ void game() {
             }
 
             if (!isWord(word)) {
-                cout << "You can use only lower latin letters or 0 to end the game and 1 to shuffle!" << endl;
+                cout << "You can use only lower latin letters or 0 to end the game or 1 to shuffle!" << endl;
                 cout << "Try again with: ";
                 printLetters(letters);
                 continue;
@@ -149,7 +149,7 @@ void game() {
                 if (i != rounds - 1) // if it is not the last round
                     cout << "Your points so far are: " << points << endl;
 
-                break;
+                break; //break the while cycle and continue to next round
             }
         }
     }

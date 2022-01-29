@@ -54,7 +54,7 @@ bool addToDictionary(const string &word) {
         return false;
     }
 
-    dictionary << word;
+    dictionary << word << endl;
 
     dictionary.close();
 
