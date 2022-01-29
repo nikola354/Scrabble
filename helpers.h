@@ -48,7 +48,7 @@ int randomLetter() {
 
 // returns arr[26], where the index in the array correspondents to the index of the letter in the alphabet.
 // the value of each element of the array is the number of occurrences the letter has
-int *generateLetters(int lettersCount) {
+int *generateLetters(int quantity) {
     int *result = new int[ALPHABET_COUNT];
 
     //set every letter to 0 occurrences
@@ -56,7 +56,7 @@ int *generateLetters(int lettersCount) {
         result[i] = 0;
     }
 
-    for (int i = 0; i < lettersCount; ++i) {
+    for (int i = 0; i < quantity; ++i) {
         srand(i + i * time(0)); //the seed for every letter is unique
         result[randomLetter()]++; //increase the occurrences of the letter by 1
     }
@@ -70,6 +70,7 @@ void printLetters(const int *letters) {
             cout << (char) (i + 'a') << ' ';
         }
     }
+
     cout << endl;
     cout << "Try with word or type 1 for new letters or 0 to end the game:" << endl;
 }
